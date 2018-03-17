@@ -38,11 +38,14 @@ def cleaned_text(text):
 
     return ''.join([' ' if c not in allowed else c for c in text])
 
-### TODO: fill out the function below that transforms the input text and window-size into a set of input/output pairs for use with our RNN model
 def window_transform_text(text, window_size, step_size):
     # containers for input/output pairs
     inputs = []
     outputs = []
+
+    for i in range(0, len(text) - window_size, step_size):
+        inputs.append(text[i:i + window_size])
+        outputs.append(text[i + window_size])
 
     return inputs,outputs
 
